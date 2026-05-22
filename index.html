@@ -7,84 +7,68 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <h1>⚽ World Cup Archive</h1>
-            <p class="subtitle">Goal Videos Collection</p>
-        </div>
-    </header>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>⚽ WCA</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-year="2022">2022 Qatar</button>
+                <button class="nav-item" data-year="2026">2026 USA/Canada</button>
+            </nav>
+            <div class="sidebar-footer">
+                <p>World Cup Archive</p>
+            </div>
+        </aside>
 
-    <main class="container">
-        <section class="year-section" id="year-2022">
-            <h2 class="year-title">2022 FIFA World Cup Qatar</h2>
-            
-            <div class="tournament-sections">
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-info">
+                    <h2 id="year-title">2022 FIFA World Cup Qatar</h2>
+                    <p id="year-subtitle">Goal Videos Collection</p>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-wrapper">
                 <!-- Group Stage Section -->
-                <section class="stage-section">
-                    <h3 class="stage-title">Group Stage</h3>
+                <section class="stage-section" id="section-groupstage">
+                    <div class="section-header">
+                        <h3>Group Stage</h3>
+                        <span class="video-count" id="count-groupstage">0</span>
+                    </div>
                     <div class="videos-grid" id="groupstage-2022">
                         <!-- Video tiles will be inserted here -->
                     </div>
                 </section>
 
-                <!-- Knockouts Section -->
-                <section class="stage-section">
-                    <h3 class="stage-title">Knockouts</h3>
-                    
-                    <div class="knockout-subsection">
-                        <h4 class="knockout-title">Early Knockouts</h4>
-                        <div class="videos-grid" id="early-knockouts-2022">
-                            <!-- Video tiles will be inserted here -->
-                        </div>
+                <!-- Early Knockouts Section -->
+                <section class="stage-section" id="section-earlyknockouts">
+                    <div class="section-header">
+                        <h3>Early Knockouts</h3>
+                        <span class="video-count" id="count-earlyknockouts">0</span>
                     </div>
-
-                    <div class="knockout-subsection">
-                        <h4 class="knockout-title">Late Knockouts</h4>
-                        <div class="videos-grid" id="late-knockouts-2022">
-                            <!-- Video tiles will be inserted here -->
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </section>
-
-        <section class="year-section" id="year-2026">
-            <h2 class="year-title">2026 FIFA World Cup USA/Canada/Mexico</h2>
-            
-            <div class="tournament-sections">
-                <!-- Group Stage Section -->
-                <section class="stage-section">
-                    <h3 class="stage-title">Group Stage</h3>
-                    <div class="videos-grid" id="groupstage-2026">
+                    <div class="videos-grid" id="early-knockouts-2022">
                         <!-- Video tiles will be inserted here -->
                     </div>
                 </section>
 
-                <!-- Knockouts Section -->
-                <section class="stage-section">
-                    <h3 class="stage-title">Knockouts</h3>
-                    
-                    <div class="knockout-subsection">
-                        <h4 class="knockout-title">Early Knockouts</h4>
-                        <div class="videos-grid" id="early-knockouts-2026">
-                            <!-- Video tiles will be inserted here -->
-                        </div>
+                <!-- Late Knockouts Section -->
+                <section class="stage-section" id="section-lateknockouts">
+                    <div class="section-header">
+                        <h3>Late Knockouts</h3>
+                        <span class="video-count" id="count-lateknockouts">0</span>
                     </div>
-
-                    <div class="knockout-subsection">
-                        <h4 class="knockout-title">Late Knockouts</h4>
-                        <div class="videos-grid" id="late-knockouts-2026">
-                            <!-- Video tiles will be inserted here -->
-                        </div>
+                    <div class="videos-grid" id="late-knockouts-2022">
+                        <!-- Video tiles will be inserted here -->
                     </div>
                 </section>
             </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <p>&copy; 2026 World Cup Archive. All rights reserved.</p>
-    </footer>
+        </main>
+    </div>
 
     <script src="script.js"></script>
 </body>

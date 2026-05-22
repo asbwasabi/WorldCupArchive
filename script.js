@@ -19,28 +19,46 @@ const videoData = {
                 title: "Germany vs Japan",
                 description: "Group E - All goals",
                 uploadLink: "https://mega.nz/example3"
+            },
+            {
+                id: 4,
+                title: "Brazil vs Serbia",
+                description: "Group G - All goals",
+                uploadLink: "https://mega.nz/example4"
             }
         ],
         earlyKnockouts: [
             {
-                id: 4,
+                id: 5,
                 title: "Netherlands vs USA",
                 description: "Round of 16",
-                uploadLink: "https://mega.nz/example4"
+                uploadLink: "https://mega.nz/example5"
             },
             {
-                id: 5,
+                id: 6,
                 title: "France vs Poland",
                 description: "Round of 16",
-                uploadLink: "https://mega.nz/example5"
+                uploadLink: "https://mega.nz/example6"
+            },
+            {
+                id: 7,
+                title: "England vs Senegal",
+                description: "Quarter-finals",
+                uploadLink: "https://mega.nz/example7"
             }
         ],
         lateKnockouts: [
             {
-                id: 6,
+                id: 8,
                 title: "Argentina vs France",
                 description: "Final - All goals",
-                uploadLink: "https://mega.nz/example6"
+                uploadLink: "https://mega.nz/example8"
+            },
+            {
+                id: 9,
+                title: "Morocco vs France",
+                description: "Semifinals",
+                uploadLink: "https://mega.nz/example9"
             }
         ]
     },
@@ -61,79 +79,79 @@ function createVideoTile(video) {
             <div class="tile-content">
                 <h4 class="video-title">${video.title}</h4>
                 <p class="video-description">${video.description}</p>
-                <span class="upload-link">View on MEGA</span>
+                <span class="upload-link">MEGA</span>
             </div>
         </a>
     `;
 }
 
-// Render videos
-function renderVideos() {
-    // 2022 Group Stage
-    const groupstage2022 = document.getElementById('groupstage-2022');
-    if (videoData[2022].groupstage.length > 0) {
-        groupstage2022.innerHTML = videoData[2022].groupstage
+// Update video count badges
+function updateCounts(year) {
+    document.getElementById('count-groupstage').textContent = videoData[year].groupstage.length;
+    document.getElementById('count-earlyknockouts').textContent = videoData[year].earlyKnockouts.length;
+    document.getElementById('count-lateknockouts').textContent = videoData[year].lateKnockouts.length;
+}
+
+// Render videos for a specific year
+function renderVideos(year) {
+    const titles = {
+        2022: '2022 FIFA World Cup Qatar',
+        2026: '2026 FIFA World Cup USA/Canada/Mexico'
+    };
+
+    // Update header
+    document.getElementById('year-title').textContent = titles[year];
+    document.getElementById('year-subtitle').textContent = `Goal Videos Collection`;
+
+    // Group Stage
+    const groupstage = document.getElementById(`groupstage-${year}`);
+    if (videoData[year].groupstage.length > 0) {
+        groupstage.innerHTML = videoData[year].groupstage
             .map(createVideoTile)
             .join('');
     } else {
-        groupstage2022.innerHTML = '<div class="empty-state">No videos yet</div>';
+        groupstage.innerHTML = '<div class="empty-state">No videos yet</div>';
     }
 
-    // 2022 Early Knockouts
-    const earlyKnockouts2022 = document.getElementById('early-knockouts-2022');
-    if (videoData[2022].earlyKnockouts.length > 0) {
-        earlyKnockouts2022.innerHTML = videoData[2022].earlyKnockouts
+    // Early Knockouts
+    const earlyKnockouts = document.getElementById(`early-knockouts-${year}`);
+    if (videoData[year].earlyKnockouts.length > 0) {
+        earlyKnockouts.innerHTML = videoData[year].earlyKnockouts
             .map(createVideoTile)
             .join('');
     } else {
-        earlyKnockouts2022.innerHTML = '<div class="empty-state">No videos yet</div>';
+        earlyKnockouts.innerHTML = '<div class="empty-state">No videos yet</div>';
     }
 
-    // 2022 Late Knockouts
-    const lateKnockouts2022 = document.getElementById('late-knockouts-2022');
-    if (videoData[2022].lateKnockouts.length > 0) {
-        lateKnockouts2022.innerHTML = videoData[2022].lateKnockouts
+    // Late Knockouts
+    const lateKnockouts = document.getElementById(`late-knockouts-${year}`);
+    if (videoData[year].lateKnockouts.length > 0) {
+        lateKnockouts.innerHTML = videoData[year].lateKnockouts
             .map(createVideoTile)
             .join('');
     } else {
-        lateKnockouts2022.innerHTML = '<div class="empty-state">No videos yet</div>';
+        lateKnockouts.innerHTML = '<div class="empty-state">No videos yet</div>';
     }
 
-    // 2026 Group Stage
-    const groupstage2026 = document.getElementById('groupstage-2026');
-    if (videoData[2026].groupstage.length > 0) {
-        groupstage2026.innerHTML = videoData[2026].groupstage
-            .map(createVideoTile)
-            .join('');
-    } else {
-        groupstage2026.innerHTML = '<div class="empty-state">No videos yet</div>';
-    }
-
-    // 2026 Early Knockouts
-    const earlyKnockouts2026 = document.getElementById('early-knockouts-2026');
-    if (videoData[2026].earlyKnockouts.length > 0) {
-        earlyKnockouts2026.innerHTML = videoData[2026].earlyKnockouts
-            .map(createVideoTile)
-            .join('');
-    } else {
-        earlyKnockouts2026.innerHTML = '<div class="empty-state">No videos yet</div>';
-    }
-
-    // 2026 Late Knockouts
-    const lateKnockouts2026 = document.getElementById('late-knockouts-2026');
-    if (videoData[2026].lateKnockouts.length > 0) {
-        lateKnockouts2026.innerHTML = videoData[2026].lateKnockouts
-            .map(createVideoTile)
-            .join('');
-    } else {
-        lateKnockouts2026.innerHTML = '<div class="empty-state">No videos yet</div>';
-    }
+    updateCounts(year);
 }
 
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', renderVideos);
+document.addEventListener('DOMContentLoaded', () => {
+    renderVideos(2022);
 
-// Function to add a new video (you can call this from an admin panel)
+    // Add event listeners to nav items
+    document.querySelectorAll('.nav-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const year = parseInt(btn.getAttribute('data-year'));
+            renderVideos(year);
+        });
+    });
+});
+
+// Function to add a new video
 function addVideo(year, stage, videoInfo) {
     if (!videoData[year]) {
         console.error('Year not found');
@@ -164,13 +182,13 @@ function addVideo(year, stage, videoInfo) {
         uploadLink: videoInfo.uploadLink
     });
 
-    renderVideos();
+    renderVideos(year);
     console.log(`Video added: ${videoInfo.title}`);
 }
 
 // Example usage:
 // addVideo(2022, 'groupstage', {
-//     title: 'Brazil vs Serbia',
-//     description: 'Group G - All goals',
+//     title: 'Spain vs Germany',
+//     description: 'Group E - Highlights',
 //     uploadLink: 'https://mega.nz/example-link'
 // });
